@@ -1,0 +1,34 @@
+$ ->
+  name = prompt("What is your name?")
+  $("#name").text(name)
+  $("#message").focus()
+  
+  #websocket stuff
+  url = "ws://<%="#{EVENTCHAT_CONFIG[:host]}:#{EVENTCHAT_CONFIG[:port]}"%>"
+  ws = new WebSocket(url)   
+  ws.open
+  
+  $("#message_form").submit (event) ->
+    message = $("#message")
+    ws.send(JSON.stringify({id: name, action: "say", data : message.val()}))
+    message.val('')
+    message.focus();
+    event.preventDefault()
+  
+  ws.onopen = ->
+    ws.send(JSON.stringify({id: name, action: "connect"}))
+    
+  ws.onmessage = (message) ->
+    $("#chat_window").append(message.data + "<br/>")
+    $(window).scrollTop($(document).height())
+    
+  ws.onclose = ->
+    #onclose not firing for some reason
+
+  #save chat log
+  $("#save_chat_log").submit (event) ->
+    $.post this.action, {chat_data : $("#chat_window").html().replace(/<br>/g, "\n")}, (data) ->
+      log_link = $("#log_link")
+      log_link.attr('href', data)
+      log_link.show()
+    event.preventDefault()

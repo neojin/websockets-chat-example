@@ -1,0 +1,13 @@
+#wrapper
+  #chat_window
+    
+#chat_input
+  =form_tag(nil, {:id=>:message_form}) do
+    %span#name
+    =text_field_tag :message
+    =submit_tag "Chat"
+  %br
+  =form_tag({:action=>:save}, {:id=>:save_chat_log}) do
+    =submit_tag "Save Chat Log"
+  %br
+  =link_to "Log Saved. Click Here to View", {:action=>:view}, {:id=>'log_link', :target=>"_blank"}

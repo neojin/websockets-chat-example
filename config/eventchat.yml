@@ -1,0 +1,13 @@
+development:
+  host: localhost
+  port: 8080
+  debug: true
+  
+test:
+  host: localhost
+  port: 8080
+  debug: true
+  
+production:
+  host: localhost
+  port: 8080

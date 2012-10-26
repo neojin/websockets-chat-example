@@ -1,0 +1,40 @@
+// Place all the styles related to the chat controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body {
+  height: 100%;
+  font:16px arial,sans-serif;
+}
+
+input {
+  font-size:20px;
+}
+
+input[type="text"] {
+  width:800px;
+}
+
+#wrapper {
+  min-height: 100%;
+}
+
+#chat_window {
+  padding-bottom: 150px;
+}
+
+#chat_input {
+  position:fixed;
+  font-size:20px;
+  padding:10px;
+  left:0px;
+  bottom:0px;
+  height:150px;
+  width:100%;
+  background-color: #f0e68c;
+  clear:both;
+}
+
+#log_link {
+  display:none;
+}
